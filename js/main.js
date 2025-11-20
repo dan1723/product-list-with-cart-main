@@ -8,6 +8,17 @@ function copyright() {
 
 
 async function loadJson(filePath) {
+    // Esta função busca um arquivo JSON e devolve os dados já convertidos em objeto JavaScript.
+    // Passo a passo (pensando em quem está começando):
+    // 1. A palavra-chave "async" permite usar "await" dentro da função, facilitando o trabalho com operações assíncronas.
+    // 2. fetch(filePath) inicia uma requisição HTTP para o caminho informado (ex.: "./json/data.json").
+    //    - Como é uma operação que demora, usamos "await" para esperar a resposta antes de seguir.
+    // 3. if (!response.ok) verifica se a resposta veio com status de sucesso (códigos 200-299).
+    //    - Se não, lança um erro explicando que a resposta não foi OK.
+    // 4. response.json() lê o corpo da resposta e converte de texto JSON para objeto JavaScript.
+    //    - "await" é usado novamente porque a conversão também é assíncrona.
+    // 5. O valor convertido é retornado, permitindo usar os dados do JSON no restante do código.
+    // 6. Qualquer problema (rede ou parse) é capturado pelo try/catch, e um erro mais amigável é lançado.
     try {
         const response = await fetch(filePath);
         if (!response.ok) {
