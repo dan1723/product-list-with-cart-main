@@ -20,6 +20,25 @@ async function loadJson(filePath) {
     }
 }
 
+function toggleButton() {
+    const cartItems = document.querySelectorAll(".grid-item");
+
+    cartItems.forEach((item) => {
+        const cartButton = item.querySelector(".cart-button");
+        const cartPlusMinus = item.querySelector(".cart-plus-minus");
+
+        cartButton.addEventListener("click", (e) => {
+            if (!cartButton.classList.contains("active")) {
+                cartButton.classList.add("active");
+                cartPlusMinus.classList.add("active");
+            } else  {
+                cartButton.classList.remove("active");
+                cartPlusMinus.classList.remove("active");
+            }
+        });
+    });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     copyright();
@@ -62,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </svg>
                         Add to Cart
                     </button>
-                    <div class="cart-plus-minus active">
+                    <div class="cart-plus-minus">
                         <span class="access-hidden">Cart Quantity</span>
                         <button class="more-less decrement">
                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="2" fill="" viewBox="0 0 10 2"><path fill="" d="M0 .375h10v1.25H0V.375Z" /></svg>
@@ -79,10 +98,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 gridWrap.appendChild(article);
             });
+            toggleButton();
         })
         .catch(error => {
             console.error('Error loading JSON data: ', error);
         })
+
+    // Ao clicar no botão "Adicionar ao carrinho",quero adicionar a classe "ativo" ao segundo botão e remover a classe "ativo" do primeiro botão.
+
+    // Ao clicar no botão "Adicionar ao carrinho", quero adicionar os dados do item ao carrinho/barra lateral.
 });
 
 /*
